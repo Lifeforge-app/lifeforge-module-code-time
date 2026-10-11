@@ -7,7 +7,7 @@
   "description": "See how much code magic you have created.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/lifeforge-app/lifeforge-module-codeTime.git"
+    "url": "https://github.com/Lifeforge-app/lifeforge-module-code-time.git"
   },
   "scripts": {
     "typecheck": "pnpm run typecheck:client && pnpm run typecheck:server",
