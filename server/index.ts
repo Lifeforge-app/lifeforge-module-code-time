@@ -80,7 +80,7 @@ const getActivities = forge
       })()
     }))
 
-    if (final.length > 0 && final[0].date !== `${yearValue}-01-01`) {
+    if (final.length > 0 && final[0]?.date !== `${yearValue}-01-01`) {
       final.unshift({
         date: `${yearValue}-01-01`,
         count: 0,
@@ -90,7 +90,7 @@ const getActivities = forge
 
     if (
       final.length > 0 &&
-      final[final.length - 1].date !== `${yearValue}-12-31`
+      final[final.length - 1]?.date !== `${yearValue}-12-31`
     ) {
       final.push({
         date: `${yearValue}-12-31`,
@@ -107,7 +107,9 @@ const getActivities = forge
 
     return response.ok({
       data: final,
-      firstYear: firstRecord ? +firstRecord.date.split('-')[0] : yearValue
+      firstYear: firstRecord
+        ? +(firstRecord.date.split('-')[0] ?? 0)
+        : yearValue
     })
   })
 
@@ -186,7 +188,7 @@ const getTopProjects = forge
         if (!groupByProject[project]) {
           groupByProject[project] = 0
         }
-        groupByProject[project] += item[project]
+        groupByProject[project] += item[project] ?? 0
       }
     }
 
@@ -234,7 +236,7 @@ const getTopLanguages = forge
         if (!groupByLanguage[language]) {
           groupByLanguage[language] = 0
         }
-        groupByLanguage[language] += item[language]
+        groupByLanguage[language] += item[language] ?? 0
       }
     }
 
@@ -305,7 +307,7 @@ const getTimeDistribution = forge
 
     for (const item of hourlyData) {
       for (const hour in item) {
-        distribution[hour] += item[hour]
+        distribution[hour] = (distribution[hour] ?? 0) + (item[hour] ?? 0)
       }
     }
 

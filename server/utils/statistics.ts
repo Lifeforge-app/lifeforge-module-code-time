@@ -40,7 +40,7 @@ export default async (db: CodeTimeDb) => {
     return 0
   })
 
-  const mostTimeSpent = groupByDate.length > 0 ? groupByDate[0].count : 0
+  const mostTimeSpent = groupByDate.length > 0 ? (groupByDate[0]?.count ?? 0) : 0
 
   const total = everything.reduce((acc, curr) => acc + curr.total_minutes, 0)
 
@@ -56,9 +56,9 @@ export default async (db: CodeTimeDb) => {
     let streak = 0
     let longest = 0
 
-    const firstDate = new Date(allDates[0])
+    const firstDate = new Date(allDates[0] ?? '')
 
-    const lastDate = new Date(allDates[allDates.length - 1])
+    const lastDate = new Date(allDates[allDates.length - 1] ?? '')
 
     const dates = getDates(firstDate, lastDate)
 
@@ -85,9 +85,9 @@ export default async (db: CodeTimeDb) => {
 
     let streak = 0
 
-    const firstDate = new Date(allDates[0])
+    const firstDate = new Date(allDates[0] ?? '')
 
-    const lastDate = new Date(allDates[allDates.length - 1])
+    const lastDate = new Date(allDates[allDates.length - 1] ?? '')
 
     const dates = getDates(firstDate, lastDate).reverse()
 
