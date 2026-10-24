@@ -37,14 +37,13 @@ function CodeTimeActivityCalendar() {
     <Widget
       gridColumnSpan={{ base: 1, lg: 2 }}
       icon="tabler:activity"
-      style={{ minHeight: 'min-content' }}
       title="activitiesCalendar"
     >
       <WithQuery query={dataQuery}>
         {({ data: activities, firstYear }) =>
           activities.length > 0 ? (
             <>
-              <Listbox value={year} onChange={setYear}>
+              <Listbox mb="lg" value={year} width="100%" onChange={setYear}>
                 {Array(new Date().getFullYear() - firstYear + 1)
                   .fill(0)
                   .map((_, index) => (
@@ -55,7 +54,7 @@ function CodeTimeActivityCalendar() {
                     />
                   ))}
               </Listbox>
-              <Box height="15rem" minWidth="0" width="100%">
+              <Box height="15rem" mb="md" minWidth="0" width="100%">
                 <ActivityCalendar
                   showWeekdayLabels
                   blockMargin={5}
