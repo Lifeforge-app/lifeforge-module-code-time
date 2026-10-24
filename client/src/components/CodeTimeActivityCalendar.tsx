@@ -126,17 +126,9 @@ function CodeTimeActivityCalendar() {
       <Tooltip
         id="codetime-react-tooltip"
         render={({ content }) => (
-          <Box
-            shadow
-            bg={{ base: 'bg-50', dark: 'bg-800' }}
-            px="md"
-            py="sm"
-            r="md"
-          >
-            <Text as="div" color={{ base: 'bg-600', dark: 'bg-400' }} py="sm">
-              {content}
-            </Text>
-          </Box>
+          <Text as="div" color={{ base: 'bg-600', dark: 'bg-400' }} py="sm">
+            {content}
+          </Text>
         )}
       />
     </Widget>
