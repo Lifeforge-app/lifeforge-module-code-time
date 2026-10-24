@@ -85,7 +85,7 @@ function CoddeTimeDailyHourTrendChart() {
       title="Daily Hour Trend"
     >
       {hourlyTrendDataQuery.data && (
-        <Box minHeight="24rem">
+        <Box height="100%" minHeight="24rem">
           <ResponsiveContainer height="100%" width="100%">
             <ComposedChart
               data={chartData}

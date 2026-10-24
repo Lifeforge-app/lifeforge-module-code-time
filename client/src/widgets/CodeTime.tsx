@@ -103,17 +103,15 @@ const CodeTime = () => {
 
       return (
         <Card>
-          <Box p="md">
-            <Text mb="xs" weight="medium">
-              {payload[0].payload.date}
+          <Text mb="xs" weight="medium">
+            {payload[0].payload.date}
+          </Text>
+          <Flex align="center" gap="xs">
+            <Text color="muted">Code time:</Text>
+            <Text style={{ color: themeColor }} weight="semibold">
+              {msToTime(hours * 3600000)}
             </Text>
-            <Flex align="center" gap="xs">
-              <Text color="muted">Code time:</Text>
-              <Text style={{ color: themeColor }} weight="semibold">
-                {msToTime(hours * 3600000)}
-              </Text>
-            </Flex>
-          </Box>
+          </Flex>
         </Card>
       )
     }
@@ -188,7 +186,7 @@ const CodeTime = () => {
       icon="tabler:chart-line"
       title="Code Time"
     >
-      <Box flex="1" minHeight="0" width="100%">
+      <Box flex="1" height="100%" minHeight="0" width="100%">
         <WithQuery query={dataQuery}>{() => <>{renderContent()}</>}</WithQuery>
       </Box>
     </Widget>

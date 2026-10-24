@@ -188,7 +188,7 @@ function CodeTimeTimeChart({ type }: { type: 'projects' | 'languages' }) {
         options={['7 days', '30 days']}
         setLastFor={setLastFor}
       />
-      <Box minHeight="24rem" width="100%">
+      <Box height="100%" minHeight="24rem" width="100%">
         <WithQuery query={dataQuery}>
           {data =>
             data.length > 0 ? (
