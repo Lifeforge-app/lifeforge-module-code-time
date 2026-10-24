@@ -127,9 +127,7 @@ function CodeTimeTopEntries({ type }: { type: 'languages' | 'projects' }) {
                         </Text>
                       </Flex>
                       <Box flexShrink="0">
-                        <Text size="3xl" weight="semibold">
-                          <HoursAndMinutesFromSeconds seconds={value} />
-                        </Text>
+                        <HoursAndMinutesFromSeconds seconds={value} size="3xl" />
                       </Box>
                     </Card>
                   ))}

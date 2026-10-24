@@ -36,11 +36,9 @@ function CodeTimeStatistics() {
               title="statisticType.timeSpentToday"
               variant="large-icon"
             >
-              <Text size="4xl" weight="semibold">
-                <HoursAndMinutesFromSeconds
-                  seconds={stats['Time spent today']}
-                />
-              </Text>
+              <HoursAndMinutesFromSeconds
+                seconds={stats['Time spent today']}
+              />
             </Widget>
             {Object.entries(stats)
               .slice(0, -1)
@@ -52,18 +50,18 @@ function CodeTimeStatistics() {
                   title={`statisticType.${_.camelCase(key)}`}
                   variant="large-icon"
                 >
-                  <Text size="4xl" weight="semibold" whiteSpace="nowrap">
-                    {index < 3 ? (
-                      <HoursAndMinutesFromSeconds seconds={value} />
-                    ) : (
-                      <>
+                  {index < 3 ? (
+                    <HoursAndMinutesFromSeconds seconds={value} />
+                  ) : (
+                    <>
+                      <Text size="4xl" weight="semibold">
                         {value}
-                        <Text as="span" color="muted" pl="xs" size="3xl">
-                          {t('units.days')}
-                        </Text>
-                      </>
-                    )}
-                  </Text>
+                      </Text>
+                      <Text as="span" color="muted" pl="xs" size="2xl">
+                        {t('units.days')}
+                      </Text>
+                    </>
+                  )}
                 </Widget>
               ))}
           </Grid>
