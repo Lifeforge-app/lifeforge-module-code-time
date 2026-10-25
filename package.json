@@ -20,10 +20,8 @@
   "dependencies": {
     "chart.js": "^4.5.0",
     "puppeteer-core": "^24.23.0",
-    "react-activity-calendar": "^2.7.14",
     "recharts": "^2.15.0"
   },
-  "devDependencies": {},
   "lifeforge": {
     "icon": "tabler:code",
     "category": "Productivity"
