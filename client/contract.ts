@@ -1,368 +1,171 @@
-export const contract = {
-  "getActivities": {
-    "method": "get",
-    "description": "Get coding activity calendar by year",
-    "noAuth": false,
-    "encrypted": true,
-    "isDownloadable": false,
-    "media": null,
-    "input": {
-      "query": {
-        "$schema": "https://json-schema.org/draft/2020-12/schema",
-        "type": "object",
-        "properties": {
-          "year": {
-            "type": "string"
-          }
-        },
-        "additionalProperties": false
-      }
-    },
-    "output": {
-      "OK": {
-        "$schema": "https://json-schema.org/draft/2020-12/schema",
-        "type": "object",
-        "properties": {
-          "data": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "date": {
-                  "type": "string"
-                },
-                "count": {
-                  "type": "number"
-                },
-                "level": {
-                  "type": "number"
-                }
-              },
-              "required": [
-                "date",
-                "count",
-                "level"
-              ],
-              "additionalProperties": false
-            }
-          },
-          "firstYear": {
-            "type": "number"
-          }
-        },
-        "required": [
-          "data",
-          "firstYear"
-        ],
-        "additionalProperties": false
-      }
-    }
-  },
-  "getStatistics": {
-    "method": "get",
-    "description": "Get overall coding statistics",
-    "noAuth": false,
-    "encrypted": true,
-    "isDownloadable": false,
-    "media": null,
-    "input": {},
-    "output": {
-      "OK": {
-        "$schema": "https://json-schema.org/draft/2020-12/schema",
-        "type": "object",
-        "additionalProperties": {
-          "type": "number"
-        }
-      }
-    }
-  },
-  "getLastXDays": {
-    "method": "get",
-    "description": "Get coding data for last X days",
-    "noAuth": false,
-    "encrypted": true,
-    "isDownloadable": false,
-    "media": null,
-    "input": {
-      "query": {
-        "$schema": "https://json-schema.org/draft/2020-12/schema",
-        "type": "object",
-        "properties": {
-          "days": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "days"
-        ],
-        "additionalProperties": false
-      }
-    },
-    "output": {
-      "OK": {
-        "$schema": "https://json-schema.org/draft/2020-12/schema",
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "date": {
-              "type": "string"
-            },
-            "relative_files": {
-              "type": "object",
-              "additionalProperties": {
-                "type": "number"
-              }
-            },
-            "projects": {
-              "type": "object",
-              "additionalProperties": {
-                "type": "number"
-              }
-            },
-            "languages": {
-              "type": "object",
-              "additionalProperties": {
-                "type": "number"
-              }
-            },
-            "hourly": {
-              "type": "object",
-              "additionalProperties": {
-                "type": "number"
-              }
-            },
-            "total_minutes": {
-              "type": "number"
-            },
-            "last_timestamp": {
-              "type": "number"
-            }
-          },
-          "required": [
-            "date",
-            "relative_files",
-            "projects",
-            "languages",
-            "hourly",
-            "total_minutes",
-            "last_timestamp"
-          ],
-          "additionalProperties": false
-        }
-      }
-    }
-  },
-  "getTopProjects": {
-    "method": "get",
-    "description": "Get top projects by time spent",
-    "noAuth": false,
-    "encrypted": true,
-    "isDownloadable": false,
-    "media": null,
-    "input": {
-      "query": {
-        "$schema": "https://json-schema.org/draft/2020-12/schema",
-        "type": "object",
-        "properties": {
-          "last": {
-            "default": "7 days",
-            "type": "string",
-            "enum": [
-              "24 hours",
-              "7 days",
-              "30 days"
-            ]
-          }
-        },
-        "required": [
-          "last"
-        ],
-        "additionalProperties": false
-      }
-    },
-    "output": {
-      "OK": {
-        "$schema": "https://json-schema.org/draft/2020-12/schema",
-        "type": "object",
-        "additionalProperties": {
-          "type": "number"
-        }
-      }
-    }
-  },
-  "getTopLanguages": {
-    "method": "get",
-    "description": "Get top languages by usage",
-    "noAuth": false,
-    "encrypted": true,
-    "isDownloadable": false,
-    "media": null,
-    "input": {
-      "query": {
-        "$schema": "https://json-schema.org/draft/2020-12/schema",
-        "type": "object",
-        "properties": {
-          "last": {
-            "default": "7 days",
-            "type": "string",
-            "enum": [
-              "24 hours",
-              "7 days",
-              "30 days"
-            ]
-          }
-        },
-        "required": [
-          "last"
-        ],
-        "additionalProperties": false
-      }
-    },
-    "output": {
-      "OK": {
-        "$schema": "https://json-schema.org/draft/2020-12/schema",
-        "type": "object",
-        "additionalProperties": {
-          "type": "number"
-        }
-      }
-    }
-  },
-  "getEachDay": {
-    "method": "get",
-    "description": "Get daily coding time breakdown",
-    "noAuth": false,
-    "encrypted": true,
-    "isDownloadable": false,
-    "media": null,
-    "input": {},
-    "output": {
-      "OK": {
-        "$schema": "https://json-schema.org/draft/2020-12/schema",
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "date": {
-              "type": "string"
-            },
-            "duration": {
-              "type": "number"
-            }
-          },
-          "required": [
-            "date",
-            "duration"
-          ],
-          "additionalProperties": false
-        }
-      }
-    }
-  },
-  "getTimeDistribution": {
-    "method": "get",
-    "description": "Get hourly coding time distribution",
-    "noAuth": false,
-    "encrypted": true,
-    "isDownloadable": false,
-    "media": null,
-    "input": {},
-    "output": {
-      "OK": {
-        "$schema": "https://json-schema.org/draft/2020-12/schema",
-        "type": "object",
-        "additionalProperties": {
-          "type": "number"
-        }
-      }
-    }
-  },
-  "user": {
-    "minutes": {
-      "method": "get",
-      "description": "Get total coding minutes",
-      "noAuth": true,
-      "encrypted": false,
-      "isDownloadable": false,
-      "media": null,
-      "input": {
-        "query": {
-          "$schema": "https://json-schema.org/draft/2020-12/schema",
-          "type": "object",
-          "properties": {
-            "minutes": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "minutes"
-          ],
-          "additionalProperties": false
-        }
-      },
-      "output": {
-        "OK": {
-          "$schema": "https://json-schema.org/draft/2020-12/schema",
-          "type": "object",
-          "properties": {
-            "minutes": {
-              "type": "number"
-            }
-          },
-          "required": [
-            "minutes"
-          ],
-          "additionalProperties": false
-        }
-      }
-    }
-  },
-  "eventLog": {
-    "method": "post",
-    "description": "Record a coding activity event",
-    "noAuth": true,
-    "encrypted": false,
-    "isDownloadable": false,
-    "media": null,
-    "input": {
-      "body": {
-        "$schema": "https://json-schema.org/draft/2020-12/schema",
-        "type": "object",
-        "properties": {},
-        "additionalProperties": {}
-      }
-    },
-    "output": {
-      "OK": {
-        "$schema": "https://json-schema.org/draft/2020-12/schema",
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "string"
-          },
-          "message": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "status",
-          "message"
-        ],
-        "additionalProperties": false
-      }
-    }
-  },
-  "readme": {
-    "method": "get",
-    "description": "Generate README stats image",
-    "noAuth": true,
-    "encrypted": false,
-    "isDownloadable": false,
-    "media": null,
-    "input": {},
-    "output": "custom"
-  }
-} as const
+export type EndpointGetLastXDays_OutputOK = {
+  date: string;
+  relative_files: {
+    [k: string]: number;
+  };
+  projects: {
+    [k: string]: number;
+  };
+  languages: {
+    [k: string]: number;
+  };
+  hourly: {
+    [k: string]: number;
+  };
+  total_minutes: number;
+  last_timestamp: number;
+}[];
+export type EndpointGetEachDay_OutputOK = {
+  date: string;
+  duration: number;
+}[];
 
-export default contract
+export interface Contract {
+  getActivities: EndpointGetActivities;
+  getStatistics: EndpointGetStatistics;
+  getLastXDays: EndpointGetLastXDays;
+  getTopProjects: EndpointGetTopProjects;
+  getTopLanguages: EndpointGetTopLanguages;
+  getEachDay: EndpointGetEachDay;
+  getTimeDistribution: EndpointGetTimeDistribution;
+  user: {
+    minutes: EndpointUserMinutes;
+  };
+  eventLog: EndpointEventLog;
+  readme: EndpointReadme;
+}
+export interface EndpointGetActivities {
+  method: "get";
+  input: {
+    query?: EndpointGetActivities_InputQuery;
+  };
+  output: {
+    OK: EndpointGetActivities_OutputOK;
+  };
+  media: null;
+}
+export interface EndpointGetActivities_InputQuery {
+  year?: string;
+}
+export interface EndpointGetActivities_OutputOK {
+  data: {
+    date: string;
+    count: number;
+    level: number;
+  }[];
+  firstYear: number;
+}
+export interface EndpointGetStatistics {
+  method: "get";
+  input: {};
+  output: {
+    OK: EndpointGetStatistics_OutputOK;
+  };
+  media: null;
+}
+export interface EndpointGetStatistics_OutputOK {
+  [k: string]: number;
+}
+export interface EndpointGetLastXDays {
+  method: "get";
+  input: {
+    query?: EndpointGetLastXDays_InputQuery;
+  };
+  output: {
+    OK: EndpointGetLastXDays_OutputOK;
+  };
+  media: null;
+}
+export interface EndpointGetLastXDays_InputQuery {
+  days: string;
+}
+export interface EndpointGetTopProjects {
+  method: "get";
+  input: {
+    query?: EndpointGetTopProjects_InputQuery;
+  };
+  output: {
+    OK: EndpointGetTopProjects_OutputOK;
+  };
+  media: null;
+}
+export interface EndpointGetTopProjects_InputQuery {
+  last: "24 hours" | "7 days" | "30 days";
+}
+export interface EndpointGetTopProjects_OutputOK {
+  [k: string]: number;
+}
+export interface EndpointGetTopLanguages {
+  method: "get";
+  input: {
+    query?: EndpointGetTopLanguages_InputQuery;
+  };
+  output: {
+    OK: EndpointGetTopLanguages_OutputOK;
+  };
+  media: null;
+}
+export interface EndpointGetTopLanguages_InputQuery {
+  last: "24 hours" | "7 days" | "30 days";
+}
+export interface EndpointGetTopLanguages_OutputOK {
+  [k: string]: number;
+}
+export interface EndpointGetEachDay {
+  method: "get";
+  input: {};
+  output: {
+    OK: EndpointGetEachDay_OutputOK;
+  };
+  media: null;
+}
+export interface EndpointGetTimeDistribution {
+  method: "get";
+  input: {};
+  output: {
+    OK: EndpointGetTimeDistribution_OutputOK;
+  };
+  media: null;
+}
+export interface EndpointGetTimeDistribution_OutputOK {
+  [k: string]: number;
+}
+export interface EndpointUserMinutes {
+  method: "get";
+  input: {
+    query?: EndpointUserMinutes_InputQuery;
+  };
+  output: {
+    OK: EndpointUserMinutes_OutputOK;
+  };
+  media: null;
+}
+export interface EndpointUserMinutes_InputQuery {
+  minutes: string;
+}
+export interface EndpointUserMinutes_OutputOK {
+  minutes: number;
+}
+export interface EndpointEventLog {
+  method: "post";
+  input: {
+    body?: EndpointEventLog_InputBody;
+  };
+  output: {
+    OK: EndpointEventLog_OutputOK;
+  };
+  media: null;
+}
+export interface EndpointEventLog_InputBody {
+  [k: string]: unknown;
+}
+export interface EndpointEventLog_OutputOK {
+  status: string;
+  message: string;
+}
+export interface EndpointReadme {
+  method: "get";
+  input: {};
+  output: any;
+  media: null;
+}
