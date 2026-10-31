@@ -16,7 +16,7 @@ function IntervalSelector<T extends string>({
   options: T[]
   lastFor: T
   setLastFor: (value: T) => void
-} & FlexProps<'div'>) {
+} & FlexProps) {
   const { t } = useModuleTranslation()
 
   return (

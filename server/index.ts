@@ -168,7 +168,7 @@ const getTopProjects = forge
       '24 hours': [24, 'hours'],
       '7 days': [7, 'days'],
       '30 days': [30, 'days']
-    }[last]!
+    }[last]
 
     const date = dayjs()
       .subtract(Number(params[0]), params[1] as dayjs.ManipulateType)
@@ -216,7 +216,7 @@ const getTopLanguages = forge
       '24 hours': [24, 'hours'],
       '7 days': [7, 'days'],
       '30 days': [30, 'days']
-    }[last]!
+    }[last]
 
     const date = dayjs()
       .subtract(Number(params[0]), params[1] as dayjs.ManipulateType)
